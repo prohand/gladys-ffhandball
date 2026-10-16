@@ -1,0 +1,1340 @@
+{
+  "manifest_version": 1,
+  "type": "device",
+  "name": "FFHandball",
+  "description": {
+    "en": "Follow French handball teams: results, standings and next matches from ffhandball.fr.",
+    "fr": "Suivez vos équipes de handball : résultats, classements et prochains matchs FFHandball.",
+    "de": "Verfolge französische Handballteams: Ergebnisse, Tabellen und Spiele von ffhandball.fr.",
+    "es": "Siga equipos de balonmano franceses: resultados, clasificación y partidos de ffhandball.fr."
+  },
+  "version": "1.0.0",
+  "docker_image": "ghcr.io/prohand/gladys-ffhandball:1.0.0",
+  "gladys_version": ">=5.1.0",
+  "cover_image": "https://raw.githubusercontent.com/prohand/gladys-ffhandball/main/cover.png",
+  "categories": ["services"],
+  "transports": ["cloud"],
+  "config_schema": [
+    {
+      "key": "intro",
+      "type": "section",
+      "label": {
+        "en": "Getting started",
+        "fr": "Pour commencer",
+        "de": "Erste Schritte",
+        "es": "Primeros pasos"
+      },
+      "description": {
+        "en": "On www.ffhandball.fr, open Competitions, pick the season, the competition, then click your team: copy the address of that page (it ends with /equipe-<number>/) and paste it below, one team per line. Don't know where your team plays? Paste the address of the competition in the \"List the teams of a competition\" button. No account, no key: the integration reads the public website.",
+        "fr": "Sur www.ffhandball.fr, ouvrez Compétitions, choisissez la saison, la compétition, puis cliquez sur votre équipe : copiez l'adresse de cette page (elle finit par /equipe-<numéro>/) et collez-la ci-dessous, une équipe par ligne. Vous ne trouvez pas la page de l'équipe ? Collez l'adresse de la compétition dans le bouton « Lister les équipes d'une compétition ». Pas de compte, pas de clé : l'intégration lit le site public.",
+        "de": "Öffne auf www.ffhandball.fr den Bereich Compétitions, wähle die Saison, den Wettbewerb und klicke auf deine Mannschaft: Kopiere die Adresse dieser Seite (sie endet mit /equipe-<Nummer>/) und füge sie unten ein, eine Mannschaft pro Zeile. Du findest die Seite nicht? Füge die Adresse des Wettbewerbs in die Schaltfläche „Mannschaften eines Wettbewerbs auflisten“ ein. Kein Konto, kein Schlüssel: Die Integration liest die öffentliche Website.",
+        "es": "En www.ffhandball.fr, abra Compétitions, elija la temporada, la competición y haga clic en su equipo: copie la dirección de esa página (termina en /equipe-<número>/) y péguela abajo, un equipo por línea. ¿No encuentra la página? Pegue la dirección de la competición en el botón «Listar los equipos de una competición». Sin cuenta ni clave: la integración lee el sitio web público."
+      },
+      "links": [
+        {
+          "url": "https://www.ffhandball.fr/competitions/",
+          "label": {
+            "en": "ffhandball.fr competitions",
+            "fr": "Compétitions ffhandball.fr",
+            "de": "Wettbewerbe auf ffhandball.fr",
+            "es": "Competiciones de ffhandball.fr"
+          }
+        },
+        {
+          "url": "https://github.com/prohand/gladys-ffhandball/blob/main/docs/en.md",
+          "label": {
+            "en": "Integration documentation",
+            "fr": "Documentation de l'intégration",
+            "de": "Dokumentation der Integration",
+            "es": "Documentación de la integración"
+          }
+        }
+      ]
+    },
+    {
+      "key": "teams",
+      "type": "string",
+      "label": {
+        "en": "Teams",
+        "fr": "Équipes",
+        "de": "Mannschaften",
+        "es": "Equipos"
+      },
+      "description": {
+        "en": "Addresses of ffhandball.fr team pages, one per line. Each team becomes a Gladys device. Team pages change every season: paste the new address in September.",
+        "fr": "Adresses des pages équipe de ffhandball.fr, une par ligne. Chaque équipe devient un appareil Gladys. Les pages équipe changent à chaque saison : collez la nouvelle adresse en septembre.",
+        "de": "Adressen von Mannschaftsseiten auf ffhandball.fr, eine pro Zeile. Jede Mannschaft wird ein Gladys-Gerät. Die Mannschaftsseiten ändern sich jede Saison: Füge im September die neue Adresse ein.",
+        "es": "Direcciones de páginas de equipo de ffhandball.fr, una por línea. Cada equipo se convierte en un dispositivo de Gladys. Las páginas cambian cada temporada: pegue la nueva dirección en septiembre."
+      },
+      "placeholder": {
+        "en": "https://www.ffhandball.fr/competitions/saison-2026-2027-22/national/daikin-starligue-2026-27-32372/equipe-2119699/",
+        "fr": "https://www.ffhandball.fr/competitions/saison-2026-2027-22/national/daikin-starligue-2026-27-32372/equipe-2119699/",
+        "de": "https://www.ffhandball.fr/competitions/saison-2026-2027-22/national/daikin-starligue-2026-27-32372/equipe-2119699/",
+        "es": "https://www.ffhandball.fr/competitions/saison-2026-2027-22/national/daikin-starligue-2026-27-32372/equipe-2119699/"
+      },
+      "required": false
+    },
+    {
+      "key": "refresh_minutes",
+      "type": "number",
+      "label": {
+        "en": "Refresh interval (minutes)",
+        "fr": "Intervalle de rafraîchissement (minutes)",
+        "de": "Aktualisierungsintervall (Minuten)",
+        "es": "Intervalo de actualización (minutos)"
+      },
+      "description": {
+        "en": "How often ffhandball.fr is read. The site itself refreshes its pages about once an hour: reading it more often brings results no sooner.",
+        "fr": "Fréquence de lecture de ffhandball.fr. Le site lui-même rafraîchit ses pages environ une fois par heure : le lire plus souvent n'apporte pas les résultats plus tôt.",
+        "de": "Wie oft ffhandball.fr gelesen wird. Die Website aktualisiert ihre Seiten selbst etwa einmal pro Stunde: Häufigeres Lesen bringt die Ergebnisse nicht früher.",
+        "es": "Frecuencia de lectura de ffhandball.fr. El propio sitio actualiza sus páginas más o menos una vez por hora: leerlo más a menudo no adelanta los resultados."
+      },
+      "required": false,
+      "default": 30,
+      "min": 5,
+      "max": 1440
+    },
+    {
+      "key": "reminder_minutes",
+      "type": "number",
+      "label": {
+        "en": "Match reminder (minutes before kick-off)",
+        "fr": "Rappel de match (minutes avant le coup d'envoi)",
+        "de": "Spielerinnerung (Minuten vor Anpfiff)",
+        "es": "Aviso de partido (minutos antes del inicio)"
+      },
+      "description": {
+        "en": "When the \"A match is about to start\" scene trigger fires. 0 fires it at kick-off.",
+        "fr": "Moment où le déclencheur de scène « Un match va commencer » se déclenche. 0 le déclenche au coup d'envoi.",
+        "de": "Wann der Szenenauslöser „Ein Spiel beginnt gleich“ auslöst. 0 löst ihn beim Anpfiff aus.",
+        "es": "Cuándo se activa el disparador de escena «Un partido va a empezar». 0 lo activa al inicio del partido."
+      },
+      "required": false,
+      "default": 60,
+      "min": 0,
+      "max": 1440
+    },
+    {
+      "key": "language",
+      "type": "select",
+      "label": {
+        "en": "Language of the device texts",
+        "fr": "Langue des textes des appareils",
+        "de": "Sprache der Gerätetexte",
+        "es": "Idioma de los textos de los dispositivos"
+      },
+      "description": {
+        "en": "Language of the feature names and of the texts published as states (last match, next match) and in scene variables. The widgets follow the reader's own language.",
+        "fr": "Langue des noms des fonctionnalités et des textes publiés comme états (dernier match, prochain match) et dans les variables de scène. Les widgets suivent la langue du lecteur.",
+        "de": "Sprache der Funktionsnamen und der als Zustände veröffentlichten Texte (letztes Spiel, nächstes Spiel) sowie der Szenenvariablen. Die Widgets folgen der Sprache des Lesers.",
+        "es": "Idioma de los nombres de las funciones y de los textos publicados como estados (último partido, próximo partido) y en las variables de escena. Los widgets siguen el idioma del lector."
+      },
+      "required": false,
+      "default": "fr",
+      "options": [
+        {
+          "value": "fr",
+          "label": {
+            "en": "French",
+            "fr": "Français",
+            "de": "Französisch",
+            "es": "Francés"
+          }
+        },
+        {
+          "value": "en",
+          "label": {
+            "en": "English",
+            "fr": "Anglais",
+            "de": "Englisch",
+            "es": "Inglés"
+          }
+        },
+        {
+          "value": "de",
+          "label": {
+            "en": "German",
+            "fr": "Allemand",
+            "de": "Deutsch",
+            "es": "Alemán"
+          }
+        },
+        {
+          "value": "es",
+          "label": {
+            "en": "Spanish",
+            "fr": "Espagnol",
+            "de": "Spanisch",
+            "es": "Español"
+          }
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "key": "test_connection",
+      "label": {
+        "en": "Test the connection",
+        "fr": "Tester la connexion",
+        "de": "Verbindung testen",
+        "es": "Probar la conexión"
+      },
+      "timeout_seconds": 60
+    },
+    {
+      "key": "list_teams",
+      "label": {
+        "en": "List the teams of a competition",
+        "fr": "Lister les équipes d'une compétition",
+        "de": "Mannschaften eines Wettbewerbs auflisten",
+        "es": "Listar los equipos de una competición"
+      },
+      "timeout_seconds": 60,
+      "fields": [
+        {
+          "key": "list_teams_intro",
+          "type": "section",
+          "label": {
+            "en": "Find the address of a team page",
+            "fr": "Trouver l'adresse d'une page équipe",
+            "de": "Die Adresse einer Mannschaftsseite finden",
+            "es": "Encontrar la dirección de una página de equipo"
+          },
+          "description": {
+            "en": "Paste the address of a competition (or of one of its pools) of ffhandball.fr: the answer lists its teams with the address to paste in the Teams field.",
+            "fr": "Collez l'adresse d'une compétition (ou d'une de ses poules) de ffhandball.fr : la réponse liste ses équipes avec l'adresse à coller dans le champ Équipes.",
+            "de": "Füge die Adresse eines Wettbewerbs (oder einer seiner Gruppen) von ffhandball.fr ein: Die Antwort listet seine Mannschaften mit der Adresse auf, die in das Feld Mannschaften gehört.",
+            "es": "Pegue la dirección de una competición (o de uno de sus grupos) de ffhandball.fr: la respuesta lista sus equipos con la dirección que hay que pegar en el campo Equipos."
+          }
+        },
+        {
+          "key": "url",
+          "type": "string",
+          "label": {
+            "en": "Competition address",
+            "fr": "Adresse de la compétition",
+            "de": "Adresse des Wettbewerbs",
+            "es": "Dirección de la competición"
+          },
+          "placeholder": {
+            "en": "https://www.ffhandball.fr/competitions/saison-2026-2027-22/national/daikin-starligue-2026-27-32372/",
+            "fr": "https://www.ffhandball.fr/competitions/saison-2026-2027-22/national/daikin-starligue-2026-27-32372/",
+            "de": "https://www.ffhandball.fr/competitions/saison-2026-2027-22/national/daikin-starligue-2026-27-32372/",
+            "es": "https://www.ffhandball.fr/competitions/saison-2026-2027-22/national/daikin-starligue-2026-27-32372/"
+          },
+          "required": true
+        }
+      ]
+    }
+  ],
+  "scene_triggers": [
+    {
+      "key": "match_result",
+      "label": {
+        "en": "A match result is published",
+        "fr": "Un résultat de match est publié",
+        "de": "Ein Spielergebnis wird veröffentlicht",
+        "es": "Se publica el resultado de un partido"
+      },
+      "description": {
+        "en": "The final score of a match of a followed team appeared on ffhandball.fr.",
+        "fr": "Le score final d'un match d'une équipe suivie est apparu sur ffhandball.fr.",
+        "de": "Das Endergebnis eines Spiels einer verfolgten Mannschaft ist auf ffhandball.fr erschienen.",
+        "es": "El resultado final de un partido de un equipo seguido ha aparecido en ffhandball.fr."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Team",
+            "fr": "Équipe",
+            "de": "Mannschaft",
+            "es": "Equipo"
+          },
+          "required": false
+        },
+        {
+          "key": "result",
+          "type": "multi_select",
+          "label": {
+            "en": "Result",
+            "fr": "Résultat",
+            "de": "Ergebnis",
+            "es": "Resultado"
+          },
+          "required": false,
+          "options": [
+            {
+              "value": "win",
+              "label": {
+                "en": "Win",
+                "fr": "Victoire",
+                "de": "Sieg",
+                "es": "Victoria"
+              }
+            },
+            {
+              "value": "draw",
+              "label": {
+                "en": "Draw",
+                "fr": "Nul",
+                "de": "Unentschieden",
+                "es": "Empate"
+              }
+            },
+            {
+              "value": "loss",
+              "label": {
+                "en": "Loss",
+                "fr": "Défaite",
+                "de": "Niederlage",
+                "es": "Derrota"
+              }
+            }
+          ]
+        },
+        {
+          "key": "venue",
+          "type": "multi_select",
+          "label": {
+            "en": "Venue",
+            "fr": "Lieu",
+            "de": "Spielort",
+            "es": "Campo"
+          },
+          "required": false,
+          "options": [
+            {
+              "value": "home",
+              "label": {
+                "en": "Home",
+                "fr": "Domicile",
+                "de": "Heim",
+                "es": "Local"
+              }
+            },
+            {
+              "value": "away",
+              "label": {
+                "en": "Away",
+                "fr": "Extérieur",
+                "de": "Auswärts",
+                "es": "Visitante"
+              }
+            }
+          ]
+        }
+      ],
+      "variables": [
+        {
+          "key": "team",
+          "type": "string",
+          "label": {
+            "en": "Team",
+            "fr": "Équipe",
+            "de": "Mannschaft",
+            "es": "Equipo"
+          }
+        },
+        {
+          "key": "opponent",
+          "type": "string",
+          "label": {
+            "en": "Opponent",
+            "fr": "Adversaire",
+            "de": "Gegner",
+            "es": "Rival"
+          }
+        },
+        {
+          "key": "score_for",
+          "type": "number",
+          "label": {
+            "en": "Goals scored",
+            "fr": "Buts marqués",
+            "de": "Erzielte Tore",
+            "es": "Goles a favor"
+          }
+        },
+        {
+          "key": "score_against",
+          "type": "number",
+          "label": {
+            "en": "Goals conceded",
+            "fr": "Buts encaissés",
+            "de": "Gegentore",
+            "es": "Goles en contra"
+          }
+        },
+        {
+          "key": "score",
+          "type": "string",
+          "label": {
+            "en": "Score (team-opponent)",
+            "fr": "Score (équipe-adversaire)",
+            "de": "Ergebnis (Mannschaft-Gegner)",
+            "es": "Marcador (equipo-rival)"
+          }
+        },
+        {
+          "key": "result_text",
+          "type": "string",
+          "label": {
+            "en": "Result, in words",
+            "fr": "Résultat, en toutes lettres",
+            "de": "Ergebnis in Worten",
+            "es": "Resultado, en palabras"
+          }
+        },
+        {
+          "key": "summary",
+          "type": "string",
+          "label": {
+            "en": "Match (home score – away)",
+            "fr": "Match (domicile score – extérieur)",
+            "de": "Spiel (Heim Ergebnis – Gast)",
+            "es": "Partido (local marcador – visitante)"
+          }
+        },
+        {
+          "key": "competition",
+          "type": "string",
+          "label": {
+            "en": "Competition",
+            "fr": "Compétition",
+            "de": "Wettbewerb",
+            "es": "Competición"
+          }
+        },
+        {
+          "key": "kickoff_text",
+          "type": "string",
+          "label": {
+            "en": "Date of the match",
+            "fr": "Date du match",
+            "de": "Datum des Spiels",
+            "es": "Fecha del partido"
+          }
+        },
+        {
+          "key": "kickoff",
+          "type": "string",
+          "label": {
+            "en": "Kick-off (ISO date)",
+            "fr": "Coup d'envoi (date ISO)",
+            "de": "Anpfiff (ISO-Datum)",
+            "es": "Inicio (fecha ISO)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "match_upcoming",
+      "label": {
+        "en": "A match is about to start",
+        "fr": "Un match va commencer",
+        "de": "Ein Spiel beginnt gleich",
+        "es": "Un partido va a empezar"
+      },
+      "description": {
+        "en": "A followed team plays soon: fires once per match, the configured number of minutes before kick-off.",
+        "fr": "Une équipe suivie joue bientôt : se déclenche une fois par match, le nombre de minutes configuré avant le coup d'envoi.",
+        "de": "Eine verfolgte Mannschaft spielt bald: löst einmal pro Spiel aus, die eingestellte Anzahl Minuten vor dem Anpfiff.",
+        "es": "Un equipo seguido juega pronto: se activa una vez por partido, los minutos configurados antes del inicio."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Team",
+            "fr": "Équipe",
+            "de": "Mannschaft",
+            "es": "Equipo"
+          },
+          "required": false
+        },
+        {
+          "key": "venue",
+          "type": "multi_select",
+          "label": {
+            "en": "Venue",
+            "fr": "Lieu",
+            "de": "Spielort",
+            "es": "Campo"
+          },
+          "required": false,
+          "options": [
+            {
+              "value": "home",
+              "label": {
+                "en": "Home",
+                "fr": "Domicile",
+                "de": "Heim",
+                "es": "Local"
+              }
+            },
+            {
+              "value": "away",
+              "label": {
+                "en": "Away",
+                "fr": "Extérieur",
+                "de": "Auswärts",
+                "es": "Visitante"
+              }
+            }
+          ]
+        }
+      ],
+      "variables": [
+        {
+          "key": "team",
+          "type": "string",
+          "label": {
+            "en": "Team",
+            "fr": "Équipe",
+            "de": "Mannschaft",
+            "es": "Equipo"
+          }
+        },
+        {
+          "key": "opponent",
+          "type": "string",
+          "label": {
+            "en": "Opponent",
+            "fr": "Adversaire",
+            "de": "Gegner",
+            "es": "Rival"
+          }
+        },
+        {
+          "key": "kickoff_text",
+          "type": "string",
+          "label": {
+            "en": "Kick-off",
+            "fr": "Coup d'envoi",
+            "de": "Anpfiff",
+            "es": "Inicio del partido"
+          }
+        },
+        {
+          "key": "minutes_before",
+          "type": "number",
+          "label": {
+            "en": "Minutes before kick-off",
+            "fr": "Minutes avant le coup d'envoi",
+            "de": "Minuten bis zum Anpfiff",
+            "es": "Minutos antes del inicio"
+          }
+        },
+        {
+          "key": "summary",
+          "type": "string",
+          "label": {
+            "en": "Match (home – away)",
+            "fr": "Match (domicile – extérieur)",
+            "de": "Spiel (Heim – Gast)",
+            "es": "Partido (local – visitante)"
+          }
+        },
+        {
+          "key": "competition",
+          "type": "string",
+          "label": {
+            "en": "Competition",
+            "fr": "Compétition",
+            "de": "Wettbewerb",
+            "es": "Competición"
+          }
+        },
+        {
+          "key": "kickoff",
+          "type": "string",
+          "label": {
+            "en": "Kick-off (ISO date)",
+            "fr": "Coup d'envoi (date ISO)",
+            "de": "Anpfiff (ISO-Datum)",
+            "es": "Inicio (fecha ISO)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "ranking_changed",
+      "label": {
+        "en": "A team's rank changed",
+        "fr": "Le classement d'une équipe a changé",
+        "de": "Der Tabellenplatz einer Mannschaft hat sich geändert",
+        "es": "La posición de un equipo ha cambiado"
+      },
+      "description": {
+        "en": "A followed team moved up or down the standings of its pool.",
+        "fr": "Une équipe suivie a gagné ou perdu des places au classement de sa poule.",
+        "de": "Eine verfolgte Mannschaft ist in der Tabelle ihrer Gruppe auf- oder abgestiegen.",
+        "es": "Un equipo seguido ha subido o bajado en la clasificación de su grupo."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Team",
+            "fr": "Équipe",
+            "de": "Mannschaft",
+            "es": "Equipo"
+          },
+          "required": false
+        },
+        {
+          "key": "direction",
+          "type": "multi_select",
+          "label": {
+            "en": "Direction",
+            "fr": "Sens",
+            "de": "Richtung",
+            "es": "Sentido"
+          },
+          "required": false,
+          "options": [
+            {
+              "value": "up",
+              "label": {
+                "en": "Moved up",
+                "fr": "Monte",
+                "de": "Aufgestiegen",
+                "es": "Sube"
+              }
+            },
+            {
+              "value": "down",
+              "label": {
+                "en": "Moved down",
+                "fr": "Descend",
+                "de": "Abgestiegen",
+                "es": "Baja"
+              }
+            }
+          ]
+        }
+      ],
+      "variables": [
+        {
+          "key": "team",
+          "type": "string",
+          "label": {
+            "en": "Team",
+            "fr": "Équipe",
+            "de": "Mannschaft",
+            "es": "Equipo"
+          }
+        },
+        {
+          "key": "rank",
+          "type": "number",
+          "label": {
+            "en": "New rank",
+            "fr": "Nouveau rang",
+            "de": "Neuer Platz",
+            "es": "Nueva posición"
+          }
+        },
+        {
+          "key": "previous_rank",
+          "type": "number",
+          "label": {
+            "en": "Previous rank",
+            "fr": "Rang précédent",
+            "de": "Vorheriger Platz",
+            "es": "Posición anterior"
+          }
+        },
+        {
+          "key": "points",
+          "type": "number",
+          "label": {
+            "en": "Points",
+            "fr": "Points",
+            "de": "Punkte",
+            "es": "Puntos"
+          }
+        },
+        {
+          "key": "competition",
+          "type": "string",
+          "label": {
+            "en": "Competition",
+            "fr": "Compétition",
+            "de": "Wettbewerb",
+            "es": "Competición"
+          }
+        }
+      ]
+    },
+    {
+      "key": "match_rescheduled",
+      "label": {
+        "en": "A match was rescheduled",
+        "fr": "Un match a été reprogrammé",
+        "de": "Ein Spiel wurde verlegt",
+        "es": "Un partido ha sido reprogramado"
+      },
+      "description": {
+        "en": "The date or the time of an upcoming match of a followed team changed on ffhandball.fr.",
+        "fr": "La date ou l'heure d'un prochain match d'une équipe suivie a changé sur ffhandball.fr.",
+        "de": "Datum oder Uhrzeit eines kommenden Spiels einer verfolgten Mannschaft hat sich auf ffhandball.fr geändert.",
+        "es": "La fecha o la hora de un próximo partido de un equipo seguido ha cambiado en ffhandball.fr."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Team",
+            "fr": "Équipe",
+            "de": "Mannschaft",
+            "es": "Equipo"
+          },
+          "required": false
+        },
+        {
+          "key": "venue",
+          "type": "multi_select",
+          "label": {
+            "en": "Venue",
+            "fr": "Lieu",
+            "de": "Spielort",
+            "es": "Campo"
+          },
+          "required": false,
+          "options": [
+            {
+              "value": "home",
+              "label": {
+                "en": "Home",
+                "fr": "Domicile",
+                "de": "Heim",
+                "es": "Local"
+              }
+            },
+            {
+              "value": "away",
+              "label": {
+                "en": "Away",
+                "fr": "Extérieur",
+                "de": "Auswärts",
+                "es": "Visitante"
+              }
+            }
+          ]
+        }
+      ],
+      "variables": [
+        {
+          "key": "team",
+          "type": "string",
+          "label": {
+            "en": "Team",
+            "fr": "Équipe",
+            "de": "Mannschaft",
+            "es": "Equipo"
+          }
+        },
+        {
+          "key": "opponent",
+          "type": "string",
+          "label": {
+            "en": "Opponent",
+            "fr": "Adversaire",
+            "de": "Gegner",
+            "es": "Rival"
+          }
+        },
+        {
+          "key": "kickoff_text",
+          "type": "string",
+          "label": {
+            "en": "New kick-off",
+            "fr": "Nouveau coup d'envoi",
+            "de": "Neuer Anpfiff",
+            "es": "Nuevo inicio"
+          }
+        },
+        {
+          "key": "previous_kickoff_text",
+          "type": "string",
+          "label": {
+            "en": "Previous kick-off",
+            "fr": "Ancien coup d'envoi",
+            "de": "Bisheriger Anpfiff",
+            "es": "Inicio anterior"
+          }
+        },
+        {
+          "key": "summary",
+          "type": "string",
+          "label": {
+            "en": "Match (home – away)",
+            "fr": "Match (domicile – extérieur)",
+            "de": "Spiel (Heim – Gast)",
+            "es": "Partido (local – visitante)"
+          }
+        },
+        {
+          "key": "kickoff",
+          "type": "string",
+          "label": {
+            "en": "Kick-off (ISO date)",
+            "fr": "Coup d'envoi (date ISO)",
+            "de": "Anpfiff (ISO-Datum)",
+            "es": "Inicio (fecha ISO)"
+          }
+        },
+        {
+          "key": "previous_kickoff",
+          "type": "string",
+          "label": {
+            "en": "Previous kick-off (ISO date)",
+            "fr": "Ancien coup d'envoi (date ISO)",
+            "de": "Bisheriger Anpfiff (ISO-Datum)",
+            "es": "Inicio anterior (fecha ISO)"
+          }
+        },
+        {
+          "key": "competition",
+          "type": "string",
+          "label": {
+            "en": "Competition",
+            "fr": "Compétition",
+            "de": "Wettbewerb",
+            "es": "Competición"
+          }
+        }
+      ]
+    }
+  ],
+  "scene_actions": [
+    {
+      "key": "get_next_match",
+      "label": {
+        "en": "Get a team's next match",
+        "fr": "Lire le prochain match d'une équipe",
+        "de": "Nächstes Spiel einer Mannschaft lesen",
+        "es": "Leer el próximo partido de un equipo"
+      },
+      "description": {
+        "en": "Opponent, date and venue of the next match, for the following actions.",
+        "fr": "Adversaire, date et lieu du prochain match, pour les actions suivantes.",
+        "de": "Gegner, Datum und Ort des nächsten Spiels, für die folgenden Aktionen.",
+        "es": "Rival, fecha y campo del próximo partido, para las acciones siguientes."
+      },
+      "timeout_seconds": 60,
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Team",
+            "fr": "Équipe",
+            "de": "Mannschaft",
+            "es": "Equipo"
+          },
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "key": "found",
+          "type": "boolean",
+          "label": {
+            "en": "A match is scheduled",
+            "fr": "Un match est programmé",
+            "de": "Ein Spiel ist angesetzt",
+            "es": "Hay un partido programado"
+          }
+        },
+        {
+          "key": "team",
+          "type": "string",
+          "label": {
+            "en": "Team",
+            "fr": "Équipe",
+            "de": "Mannschaft",
+            "es": "Equipo"
+          }
+        },
+        {
+          "key": "opponent",
+          "type": "string",
+          "label": {
+            "en": "Opponent",
+            "fr": "Adversaire",
+            "de": "Gegner",
+            "es": "Rival"
+          }
+        },
+        {
+          "key": "venue",
+          "type": "string",
+          "label": {
+            "en": "Venue (home or away)",
+            "fr": "Lieu (home ou away)",
+            "de": "Spielort (home oder away)",
+            "es": "Campo (home o away)"
+          }
+        },
+        {
+          "key": "kickoff",
+          "type": "string",
+          "label": {
+            "en": "Kick-off (ISO date)",
+            "fr": "Coup d'envoi (date ISO)",
+            "de": "Anpfiff (ISO-Datum)",
+            "es": "Inicio (fecha ISO)"
+          }
+        },
+        {
+          "key": "kickoff_text",
+          "type": "string",
+          "label": {
+            "en": "Kick-off, readable",
+            "fr": "Coup d'envoi, lisible",
+            "de": "Anpfiff, lesbar",
+            "es": "Inicio, legible"
+          }
+        },
+        {
+          "key": "days_until",
+          "type": "number",
+          "label": {
+            "en": "Days until the match",
+            "fr": "Jours avant le match",
+            "de": "Tage bis zum Spiel",
+            "es": "Días hasta el partido"
+          }
+        },
+        {
+          "key": "competition",
+          "type": "string",
+          "label": {
+            "en": "Competition",
+            "fr": "Compétition",
+            "de": "Wettbewerb",
+            "es": "Competición"
+          }
+        },
+        {
+          "key": "summary",
+          "type": "string",
+          "label": {
+            "en": "Match (home – away)",
+            "fr": "Match (domicile – extérieur)",
+            "de": "Spiel (Heim – Gast)",
+            "es": "Partido (local – visitante)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "get_last_result",
+      "label": {
+        "en": "Get a team's last result",
+        "fr": "Lire le dernier résultat d'une équipe",
+        "de": "Letztes Ergebnis einer Mannschaft lesen",
+        "es": "Leer el último resultado de un equipo"
+      },
+      "description": {
+        "en": "Score and opponent of the last match played, for the following actions.",
+        "fr": "Score et adversaire du dernier match joué, pour les actions suivantes.",
+        "de": "Ergebnis und Gegner des letzten Spiels, für die folgenden Aktionen.",
+        "es": "Marcador y rival del último partido jugado, para las acciones siguientes."
+      },
+      "timeout_seconds": 60,
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Team",
+            "fr": "Équipe",
+            "de": "Mannschaft",
+            "es": "Equipo"
+          },
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "key": "found",
+          "type": "boolean",
+          "label": {
+            "en": "A match was played",
+            "fr": "Un match a été joué",
+            "de": "Ein Spiel wurde gespielt",
+            "es": "Se ha jugado un partido"
+          }
+        },
+        {
+          "key": "team",
+          "type": "string",
+          "label": {
+            "en": "Team",
+            "fr": "Équipe",
+            "de": "Mannschaft",
+            "es": "Equipo"
+          }
+        },
+        {
+          "key": "opponent",
+          "type": "string",
+          "label": {
+            "en": "Opponent",
+            "fr": "Adversaire",
+            "de": "Gegner",
+            "es": "Rival"
+          }
+        },
+        {
+          "key": "venue",
+          "type": "string",
+          "label": {
+            "en": "Venue (home or away)",
+            "fr": "Lieu (home ou away)",
+            "de": "Spielort (home oder away)",
+            "es": "Campo (home o away)"
+          }
+        },
+        {
+          "key": "result",
+          "type": "string",
+          "label": {
+            "en": "Result (win, draw or loss)",
+            "fr": "Résultat (win, draw ou loss)",
+            "de": "Ergebnis (win, draw oder loss)",
+            "es": "Resultado (win, draw o loss)"
+          }
+        },
+        {
+          "key": "result_text",
+          "type": "string",
+          "label": {
+            "en": "Result, in words",
+            "fr": "Résultat, en toutes lettres",
+            "de": "Ergebnis in Worten",
+            "es": "Resultado, en palabras"
+          }
+        },
+        {
+          "key": "score_for",
+          "type": "number",
+          "label": {
+            "en": "Goals scored",
+            "fr": "Buts marqués",
+            "de": "Erzielte Tore",
+            "es": "Goles a favor"
+          }
+        },
+        {
+          "key": "score_against",
+          "type": "number",
+          "label": {
+            "en": "Goals conceded",
+            "fr": "Buts encaissés",
+            "de": "Gegentore",
+            "es": "Goles en contra"
+          }
+        },
+        {
+          "key": "summary",
+          "type": "string",
+          "label": {
+            "en": "Match (home score – away)",
+            "fr": "Match (domicile score – extérieur)",
+            "de": "Spiel (Heim Ergebnis – Gast)",
+            "es": "Partido (local marcador – visitante)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "get_standing",
+      "label": {
+        "en": "Get a team's standing",
+        "fr": "Lire le classement d'une équipe",
+        "de": "Tabellenplatz einer Mannschaft lesen",
+        "es": "Leer la clasificación de un equipo"
+      },
+      "description": {
+        "en": "Rank, points and record of a team in its pool, for the following actions.",
+        "fr": "Rang, points et bilan d'une équipe dans sa poule, pour les actions suivantes.",
+        "de": "Platz, Punkte und Bilanz einer Mannschaft in ihrer Gruppe, für die folgenden Aktionen.",
+        "es": "Posición, puntos y balance de un equipo en su grupo, para las acciones siguientes."
+      },
+      "timeout_seconds": 60,
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Team",
+            "fr": "Équipe",
+            "de": "Mannschaft",
+            "es": "Equipo"
+          },
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "key": "found",
+          "type": "boolean",
+          "label": {
+            "en": "Standings available",
+            "fr": "Classement disponible",
+            "de": "Tabelle verfügbar",
+            "es": "Clasificación disponible"
+          }
+        },
+        {
+          "key": "team",
+          "type": "string",
+          "label": {
+            "en": "Team",
+            "fr": "Équipe",
+            "de": "Mannschaft",
+            "es": "Equipo"
+          }
+        },
+        {
+          "key": "rank",
+          "type": "number",
+          "label": {
+            "en": "Rank",
+            "fr": "Rang",
+            "de": "Platz",
+            "es": "Posición"
+          }
+        },
+        {
+          "key": "points",
+          "type": "number",
+          "label": {
+            "en": "Points",
+            "fr": "Points",
+            "de": "Punkte",
+            "es": "Puntos"
+          }
+        },
+        {
+          "key": "played",
+          "type": "number",
+          "label": {
+            "en": "Played",
+            "fr": "Joués",
+            "de": "Spiele",
+            "es": "Jugados"
+          }
+        },
+        {
+          "key": "won",
+          "type": "number",
+          "label": {
+            "en": "Won",
+            "fr": "Gagnés",
+            "de": "Siege",
+            "es": "Ganados"
+          }
+        },
+        {
+          "key": "drawn",
+          "type": "number",
+          "label": {
+            "en": "Drawn",
+            "fr": "Nuls",
+            "de": "Unentschieden",
+            "es": "Empatados"
+          }
+        },
+        {
+          "key": "lost",
+          "type": "number",
+          "label": {
+            "en": "Lost",
+            "fr": "Perdus",
+            "de": "Niederlagen",
+            "es": "Perdidos"
+          }
+        },
+        {
+          "key": "goal_difference",
+          "type": "number",
+          "label": {
+            "en": "Goal difference",
+            "fr": "Différence de buts",
+            "de": "Tordifferenz",
+            "es": "Diferencia de goles"
+          }
+        },
+        {
+          "key": "teams_in_pool",
+          "type": "number",
+          "label": {
+            "en": "Teams in the pool",
+            "fr": "Équipes dans la poule",
+            "de": "Mannschaften in der Gruppe",
+            "es": "Equipos en el grupo"
+          }
+        }
+      ]
+    }
+  ],
+  "widgets": [
+    {
+      "key": "team",
+      "label": {
+        "en": "Handball team",
+        "fr": "Équipe de handball",
+        "de": "Handballteam",
+        "es": "Equipo de balonmano"
+      },
+      "description": {
+        "en": "Rank, points, last result and next match of a followed team.",
+        "fr": "Rang, points, dernier résultat et prochain match d'une équipe suivie.",
+        "de": "Platz, Punkte, letztes Ergebnis und nächstes Spiel einer Mannschaft.",
+        "es": "Posición, puntos, último resultado y próximo partido de un equipo."
+      },
+      "icon": "award",
+      "settings": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Team",
+            "fr": "Équipe",
+            "de": "Mannschaft",
+            "es": "Equipo"
+          },
+          "required": false
+        }
+      ],
+      "action_timeout_seconds": 60
+    },
+    {
+      "key": "standings",
+      "label": {
+        "en": "Handball standings",
+        "fr": "Classement handball",
+        "de": "Handball-Tabelle",
+        "es": "Clasificación balonmano"
+      },
+      "description": {
+        "en": "The standings of a team's pool, around the team.",
+        "fr": "Le classement de la poule d'une équipe, autour de l'équipe.",
+        "de": "Die Tabelle der Gruppe einer Mannschaft, rund um die Mannschaft.",
+        "es": "La clasificación del grupo de un equipo, alrededor del equipo."
+      },
+      "icon": "list",
+      "settings": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Team",
+            "fr": "Équipe",
+            "de": "Mannschaft",
+            "es": "Equipo"
+          },
+          "required": false
+        },
+        {
+          "key": "count",
+          "type": "number",
+          "label": {
+            "en": "Rows shown",
+            "fr": "Lignes affichées",
+            "de": "Angezeigte Zeilen",
+            "es": "Filas mostradas"
+          },
+          "required": false,
+          "default": 10,
+          "min": 3,
+          "max": 10
+        }
+      ]
+    },
+    {
+      "key": "fixtures",
+      "label": {
+        "en": "Next matches",
+        "fr": "Prochains matchs",
+        "de": "Nächste Spiele",
+        "es": "Próximos partidos"
+      },
+      "description": {
+        "en": "The next matches of every followed team.",
+        "fr": "Les prochains matchs de toutes les équipes suivies.",
+        "de": "Die nächsten Spiele aller verfolgten Mannschaften.",
+        "es": "Los próximos partidos de todos los equipos seguidos."
+      },
+      "icon": "calendar",
+      "settings": [
+        {
+          "key": "count",
+          "type": "number",
+          "label": {
+            "en": "Matches shown",
+            "fr": "Matchs affichés",
+            "de": "Angezeigte Spiele",
+            "es": "Partidos mostrados"
+          },
+          "required": false,
+          "default": 5,
+          "min": 1,
+          "max": 8
+        }
+      ]
+    },
+    {
+      "key": "results",
+      "label": {
+        "en": "Last results",
+        "fr": "Derniers résultats",
+        "de": "Letzte Ergebnisse",
+        "es": "Últimos resultados"
+      },
+      "description": {
+        "en": "The last results of every followed team.",
+        "fr": "Les derniers résultats de toutes les équipes suivies.",
+        "de": "Die letzten Ergebnisse aller verfolgten Mannschaften.",
+        "es": "Los últimos resultados de todos los equipos seguidos."
+      },
+      "icon": "flag",
+      "settings": [
+        {
+          "key": "count",
+          "type": "number",
+          "label": {
+            "en": "Results shown",
+            "fr": "Résultats affichés",
+            "de": "Angezeigte Ergebnisse",
+            "es": "Resultados mostrados"
+          },
+          "required": false,
+          "default": 5,
+          "min": 1,
+          "max": 8
+        }
+      ]
+    }
+  ]
+}
