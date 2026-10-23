@@ -8,8 +8,8 @@
     "de": "Verfolge französische Handballteams: Ergebnisse, Tabellen und Spiele von ffhandball.fr.",
     "es": "Siga equipos de balonmano franceses: resultados, clasificación y partidos de ffhandball.fr."
   },
-  "version": "1.0.1",
-  "docker_image": "ghcr.io/prohand/gladys-ffhandball:1.0.1",
+  "version": "1.0.2",
+  "docker_image": "ghcr.io/prohand/gladys-ffhandball:1.0.2",
   "gladys_version": ">=5.1.0",
   "cover_image": "https://raw.githubusercontent.com/prohand/gladys-ffhandball/main/cover.png",
   "categories": ["services"],

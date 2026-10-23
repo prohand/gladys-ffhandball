@@ -10,6 +10,10 @@ the notes of the version's GitHub Release.
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-10-23
+
+- Maintenance release, no functional change.
+
 ## [1.0.1] - 2026-10-16
 
 ### Added
@@ -35,5 +39,6 @@ the notes of the version's GitHub Release.
   Releases, Dependabot.
 - `SECURITY.md`, `CLAUDE.md` and this changelog.
 
-[Unreleased]: https://github.com/prohand/gladys-ffhandball/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/prohand/gladys-ffhandball/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/prohand/gladys-ffhandball/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/prohand/gladys-ffhandball/releases/tag/v1.0.1
