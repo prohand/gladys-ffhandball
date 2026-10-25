@@ -150,17 +150,57 @@ test('the categories stay inside the vocabulary the store indexes', () => {
     'notifications',
     'assistants',
     'services',
+    // Added to the vocabulary in 2026-10.
+    'transport',
+    'vehicles',
+    'servers',
+    'leisure',
   ];
   assert.ok(manifest.categories.length >= 1 && manifest.categories.length <= 3);
+  assert.equal(new Set(manifest.categories).size, manifest.categories.length);
   for (const category of manifest.categories) {
     assert.ok(vocabulary.includes(category), `unknown category "${category}"`);
+  }
+  // Following a sports team is a pastime: the shelf the store proposes for it.
+  assert.ok(manifest.categories.includes('leisure'));
+});
+
+test('the search keywords follow the store rules', () => {
+  // 1 to 10 unique terms of 2 to 30 characters, compared trimmed and
+  // lowercased. Never displayed: only the catalog search reads them.
+  const { keywords } = manifest;
+  assert.ok(Array.isArray(keywords) && keywords.length >= 1 && keywords.length <= 10);
+  for (const keyword of keywords) {
+    assert.equal(typeof keyword, 'string');
+    const { length } = keyword.trim();
+    assert.ok(length >= 2 && length <= 30, `keyword "${keyword}": ${length} characters`);
+  }
+  const normalized = keywords.map((keyword) => keyword.trim().toLowerCase());
+  assert.equal(new Set(normalized).size, normalized.length, 'keywords must be unique');
+});
+
+test('the integration is declared for France only', () => {
+  // ffhandball.fr covers the French federation's competitions: the catalog of
+  // an instance located elsewhere hides it from its shelves (not from search).
+  assert.deepEqual(manifest.countries, ['FR']);
+  for (const country of manifest.countries) {
+    assert.match(country, /^[A-Z]{2}$/);
   }
 });
 
 test('the Gladys floor covers every field the manifest declares', () => {
-  // `categories` needs 4.86; the widgets and scene declarations need 5.1.
+  // `categories` needs 4.86; the widgets and scene declarations need 5.1;
+  // `keywords`, `countries` and `music` need 5.3. Compared as numbers.
   const [major, minor] = manifest.gladys_version.replace(/^>=/, '').split('.').map(Number);
-  assert.ok(major > 5 || (major === 5 && minor >= 1), `got ${manifest.gladys_version}`);
+  const atLeast = (wantedMajor, wantedMinor) =>
+    major > wantedMajor || (major === wantedMajor && minor >= wantedMinor);
+  assert.ok(atLeast(5, 1), `got ${manifest.gladys_version}`);
+  if (['keywords', 'countries', 'music'].some((field) => manifest[field] !== undefined)) {
+    assert.ok(
+      atLeast(5, 3),
+      `keywords / countries / music need >=5.3.0, got ${manifest.gladys_version}`,
+    );
+  }
 });
 
 /** Every multi-language object of the manifest, with where it sits. */

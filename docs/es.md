@@ -8,6 +8,8 @@ widgets del panel.
 
 Sin cuenta ni clave: la integración lee el sitio web público por internet (nube).
 
+Requiere **Gladys 5.3.0 o posterior**.
+
 ## Añadir un equipo
 
 1. En [www.ffhandball.fr/competitions](https://www.ffhandball.fr/competitions/), elija la
