@@ -10,6 +10,8 @@ the notes of the version's GitHub Release.
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-10-25
+
 ### Added
 
 - Catalog: the integration now sits on the new **Leisure** shelf (next to Services), is found by
@@ -49,6 +51,7 @@ the notes of the version's GitHub Release.
   Releases, Dependabot.
 - `SECURITY.md`, `CLAUDE.md` and this changelog.
 
-[Unreleased]: https://github.com/prohand/gladys-ffhandball/compare/v1.0.2...HEAD
+[Unreleased]: https://github.com/prohand/gladys-ffhandball/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/prohand/gladys-ffhandball/compare/v1.0.2...v1.1.0
 [1.0.2]: https://github.com/prohand/gladys-ffhandball/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/prohand/gladys-ffhandball/releases/tag/v1.0.1
