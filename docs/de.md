@@ -9,6 +9,8 @@ Dashboard-Widgets.
 Kein Konto, kein Schlüssel: Die Integration liest die öffentliche Website über das Internet
 (Cloud).
 
+Benötigt **Gladys 5.3.0 oder neuer**.
+
 ## Eine Mannschaft hinzufügen
 
 1. Wähle auf [www.ffhandball.fr/competitions](https://www.ffhandball.fr/competitions/) die

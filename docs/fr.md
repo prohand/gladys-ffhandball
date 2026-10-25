@@ -7,6 +7,8 @@ dernier résultat et son prochain match, et alimente des déclencheurs de scène
 
 Pas de compte, pas de clé : l'intégration lit le site public, par internet (cloud).
 
+Nécessite **Gladys 5.3.0 ou plus récent**.
+
 ## Ajouter une équipe
 
 1. Sur [www.ffhandball.fr/competitions](https://www.ffhandball.fr/competitions/), choisissez la

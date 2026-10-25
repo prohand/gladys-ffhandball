@@ -10,6 +10,16 @@ the notes of the version's GitHub Release.
 
 ## [Unreleased]
 
+### Added
+
+- Catalog: the integration now sits on the new **Leisure** shelf (next to Services), is found by
+  search terms such as "ffhb", "starligue" or "proligue", and is listed for France.
+
+### Changed
+
+- **Gladys 5.3.0 or later is now required** (the catalog search terms and country need it).
+- SDK `@gladysassistant/integration-sdk` 0.16.
+
 ## [1.0.2] - 2026-10-23
 
 - Maintenance release, no functional change.

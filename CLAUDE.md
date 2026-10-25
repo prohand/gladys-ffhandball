@@ -10,7 +10,8 @@ dependency: `@gladysassistant/integration-sdk`) that follows French handball tea
 **ffhandball.fr**: one Gladys device per team (rank, points, record, last result, next match),
 scene triggers (result published, match about to start, rank changed, match rescheduled),
 scene actions (next match, last result, standing) and four dashboard widgets (team, standings,
-fixtures, results). Gladys 5.1+. Transport: **cloud** only.
+fixtures, results). Gladys 5.3+ (`gladys_version >=5.3.0`: `keywords` and `countries` need it).
+Transport: **cloud** only; France only (`countries: ["FR"]`).
 
 Started from the official
 [JavaScript template](https://github.com/GladysAssistant/integration-template-js); the
@@ -93,7 +94,9 @@ A team page address is
   heading: the Release workflow moves the section.
 - **Manifest.** Every text is `{ en, fr, de, es }` (test enforced), catalog description 10–100
   characters per language, widget labels 3–30. `test/manifest.test.js` ties the manifest to the
-  code (defaults, handlers, triggers, widgets): change both sides together.
+  code (defaults, handlers, triggers, widgets): change both sides together. It also pins the
+  catalog fields: `categories` (1–3, `leisure` among them), `keywords` (1–10 unique terms of 2–30
+  characters) and `countries` (`["FR"]`), and the `gladys_version` floor they require (5.3.0).
 - **User-facing text** is in the four languages: messages (`localize` / `pick`), manifest,
   widgets, and `docs/en.md`, `docs/fr.md`, `docs/de.md`, `docs/es.md`, kept in sync.
 - **Widgets**: `validateWidgetContent(content)` must stay `[]` (test enforced).

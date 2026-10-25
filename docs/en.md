@@ -7,6 +7,8 @@ result and its next match, and feeds scene triggers and dashboard widgets.
 
 No account and no key: the integration reads the public website, over the internet (cloud).
 
+Requires **Gladys 5.3.0 or later**.
+
 ## Add a team
 
 1. On [www.ffhandball.fr/competitions](https://www.ffhandball.fr/competitions/), pick the
