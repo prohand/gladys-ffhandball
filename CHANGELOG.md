@@ -10,6 +10,11 @@ the notes of the version's GitHub Release.
 
 ## [Unreleased]
 
+### Fixed
+
+- Configuration: the **Teams** field is a single line, so its help no longer says "one per
+  line": separate several team addresses with commas (spaces and semicolons work too).
+
 ## [1.1.0] - 2026-10-25
 
 ### Added

@@ -38,10 +38,10 @@
         "es": "Primeros pasos"
       },
       "description": {
-        "en": "On www.ffhandball.fr, open Competitions, pick the season, the competition, then click your team: copy the address of that page (it ends with /equipe-<number>/) and paste it below, one team per line. Don't know where your team plays? Paste the address of the competition in the \"List the teams of a competition\" button. No account, no key: the integration reads the public website.",
-        "fr": "Sur www.ffhandball.fr, ouvrez Compétitions, choisissez la saison, la compétition, puis cliquez sur votre équipe : copiez l'adresse de cette page (elle finit par /equipe-<numéro>/) et collez-la ci-dessous, une équipe par ligne. Vous ne trouvez pas la page de l'équipe ? Collez l'adresse de la compétition dans le bouton « Lister les équipes d'une compétition ». Pas de compte, pas de clé : l'intégration lit le site public.",
-        "de": "Öffne auf www.ffhandball.fr den Bereich Compétitions, wähle die Saison, den Wettbewerb und klicke auf deine Mannschaft: Kopiere die Adresse dieser Seite (sie endet mit /equipe-<Nummer>/) und füge sie unten ein, eine Mannschaft pro Zeile. Du findest die Seite nicht? Füge die Adresse des Wettbewerbs in die Schaltfläche „Mannschaften eines Wettbewerbs auflisten“ ein. Kein Konto, kein Schlüssel: Die Integration liest die öffentliche Website.",
-        "es": "En www.ffhandball.fr, abra Compétitions, elija la temporada, la competición y haga clic en su equipo: copie la dirección de esa página (termina en /equipe-<número>/) y péguela abajo, un equipo por línea. ¿No encuentra la página? Pegue la dirección de la competición en el botón «Listar los equipos de una competición». Sin cuenta ni clave: la integración lee el sitio web público."
+        "en": "On www.ffhandball.fr, open Competitions, pick the season, the competition, then click your team: copy the address of that page (it ends with /equipe-<number>/) and paste it below, several teams separated by commas. Don't know where your team plays? Paste the address of the competition in the \"List the teams of a competition\" button. No account, no key: the integration reads the public website.",
+        "fr": "Sur www.ffhandball.fr, ouvrez Compétitions, choisissez la saison, la compétition, puis cliquez sur votre équipe : copiez l'adresse de cette page (elle finit par /equipe-<numéro>/) et collez-la ci-dessous, plusieurs équipes séparées par des virgules. Vous ne trouvez pas la page de l'équipe ? Collez l'adresse de la compétition dans le bouton « Lister les équipes d'une compétition ». Pas de compte, pas de clé : l'intégration lit le site public.",
+        "de": "Öffne auf www.ffhandball.fr den Bereich Compétitions, wähle die Saison, den Wettbewerb und klicke auf deine Mannschaft: Kopiere die Adresse dieser Seite (sie endet mit /equipe-<Nummer>/) und füge sie unten ein, mehrere Mannschaften durch Kommas getrennt. Du findest die Seite nicht? Füge die Adresse des Wettbewerbs in die Schaltfläche „Mannschaften eines Wettbewerbs auflisten“ ein. Kein Konto, kein Schlüssel: Die Integration liest die öffentliche Website.",
+        "es": "En www.ffhandball.fr, abra Compétitions, elija la temporada, la competición y haga clic en su equipo: copie la dirección de esa página (termina en /equipe-<número>/) y péguela abajo, varios equipos separados por comas. ¿No encuentra la página? Pegue la dirección de la competición en el botón «Listar los equipos de una competición». Sin cuenta ni clave: la integración lee el sitio web público."
       },
       "links": [
         {
@@ -74,10 +74,10 @@
         "es": "Equipos"
       },
       "description": {
-        "en": "Addresses of ffhandball.fr team pages, one per line. Each team becomes a Gladys device. Team pages change every season: paste the new address in September.",
-        "fr": "Adresses des pages équipe de ffhandball.fr, une par ligne. Chaque équipe devient un appareil Gladys. Les pages équipe changent à chaque saison : collez la nouvelle adresse en septembre.",
-        "de": "Adressen von Mannschaftsseiten auf ffhandball.fr, eine pro Zeile. Jede Mannschaft wird ein Gladys-Gerät. Die Mannschaftsseiten ändern sich jede Saison: Füge im September die neue Adresse ein.",
-        "es": "Direcciones de páginas de equipo de ffhandball.fr, una por línea. Cada equipo se convierte en un dispositivo de Gladys. Las páginas cambian cada temporada: pegue la nueva dirección en septiembre."
+        "en": "Addresses of ffhandball.fr team pages, separated by commas. Each team becomes a Gladys device. Team pages change every season: paste the new address in September.",
+        "fr": "Adresses des pages équipe de ffhandball.fr, séparées par des virgules. Chaque équipe devient un appareil Gladys. Les pages équipe changent à chaque saison : collez la nouvelle adresse en septembre.",
+        "de": "Adressen von Mannschaftsseiten auf ffhandball.fr, durch Kommas getrennt. Jede Mannschaft wird ein Gladys-Gerät. Die Mannschaftsseiten ändern sich jede Saison: Füge im September die neue Adresse ein.",
+        "es": "Direcciones de páginas de equipo de ffhandball.fr, separadas por comas. Cada equipo se convierte en un dispositivo de Gladys. Las páginas cambian cada temporada: pegue la nueva dirección en septiembre."
       },
       "placeholder": {
         "en": "https://www.ffhandball.fr/competitions/saison-2026-2027-22/national/daikin-starligue-2026-27-32372/equipe-2119699/",

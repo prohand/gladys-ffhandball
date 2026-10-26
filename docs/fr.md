@@ -21,7 +21,7 @@ Nécessite **Gladys 5.3.0 ou plus récent**.
    ```
 
 3. Dans Gladys, ouvrez l'écran **Configuration** de l'intégration et collez-la dans
-   **Équipes**. Une adresse par ligne pour suivre plusieurs équipes. Enregistrez.
+   **Équipes**. Séparez les adresses par des virgules pour suivre plusieurs équipes. Enregistrez.
 4. Ouvrez l'onglet **Découverte** et créez les appareils.
 
 **Vous ne trouvez pas la page de l'équipe ?** Copiez plutôt l'adresse de la compétition (ou
@@ -36,7 +36,7 @@ réponse liste chaque équipe avec l'adresse à coller.
 
 | Champ                               | Rôle                                                                                                                              |
 | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| **Équipes**                         | Adresses des pages équipe, une par ligne.                                                                                         |
+| **Équipes**                         | Adresses des pages équipe, séparées par des virgules (ou des espaces).                                                            |
 | **Intervalle de rafraîchissement**  | Minutes entre deux lectures de ffhandball.fr (30 par défaut, 5 minimum). Le site rafraîchit ses pages environ une fois par heure. |
 | **Rappel de match**                 | Minutes avant le coup d'envoi où « Un match va commencer » se déclenche (60 par défaut, 0 = au coup d'envoi).                     |
 | **Langue des textes des appareils** | Langue des noms des fonctionnalités et des textes publiés comme états et variables de scène.                                      |

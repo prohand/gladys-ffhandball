@@ -12,7 +12,8 @@ import { LANGUAGES } from './i18n.js';
 // Defaults: they MUST stay consistent with the `default` values declared in the
 // `config_schema` of the manifest (test/manifest.test.js checks it).
 export const DEFAULT_CONFIG = {
-  // ffhandball.fr team pages, one per line.
+  // ffhandball.fr team pages, separated by commas: the Gladys form field is
+  // a single line.
   teams: '',
   // Minutes between two reads of ffhandball.fr. The site itself caches its
   // pages for an hour: reading it every minute would only load it for nothing.
@@ -81,8 +82,8 @@ export function parseCompetitionUrl(url) {
 }
 
 /**
- * Read the followed teams out of the `teams` field: one address per line (a
- * comma, a semicolon or spaces work too). An address that is not a team page
+ * Read the followed teams out of the `teams` field: addresses separated by
+ * commas (the form field is a single line), semicolons, spaces or line breaks. An address that is not a team page
  * is reported, never silently dropped.
  * @param {string} text
  * @returns {{ teams: ReturnType<typeof parseTeamUrl>[], invalid: string[] }}

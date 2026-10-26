@@ -23,7 +23,7 @@ Benötigt **Gladys 5.3.0 oder neuer**.
    ```
 
 3. Öffne in Gladys den Bildschirm **Konfiguration** der Integration und füge sie in
-   **Mannschaften** ein. Eine Adresse pro Zeile, um mehrere Mannschaften zu verfolgen.
+   **Mannschaften** ein. Trenne die Adressen durch Kommas, um mehrere Mannschaften zu verfolgen.
    Speichern.
 4. Öffne den Reiter **Entdeckung** und lege die Geräte an.
 
@@ -39,7 +39,7 @@ letzten Saison bleibt auf dem alten, das du löschen kannst).
 
 | Feld                         | Wirkung                                                                                                                                         |
 | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Mannschaften**             | Adressen der Mannschaftsseiten, eine pro Zeile.                                                                                                 |
+| **Mannschaften**             | Adressen der Mannschaftsseiten, durch Kommas (oder Leerzeichen) getrennt.                                                                       |
 | **Aktualisierungsintervall** | Minuten zwischen zwei Lesevorgängen von ffhandball.fr (Standard 30, mindestens 5). Die Website aktualisiert ihre Seiten etwa einmal pro Stunde. |
 | **Spielerinnerung**          | Minuten vor dem Anpfiff, zu denen „Ein Spiel beginnt gleich“ auslöst (Standard 60, 0 = beim Anpfiff).                                           |
 | **Sprache der Gerätetexte**  | Sprache der Funktionsnamen und der als Zustände und Szenenvariablen veröffentlichten Texte.                                                     |
