@@ -1,6 +1,6 @@
 {
   "name": "gladys-ffhandball",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "description": "Gladys Assistant external integration following French handball teams (FFHandball): results, standings, fixtures.",
   "type": "module",

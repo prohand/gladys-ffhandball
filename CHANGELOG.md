@@ -10,6 +10,8 @@ the notes of the version's GitHub Release.
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-10-26
+
 ### Fixed
 
 - Configuration: the **Teams** field is a single line, so its help no longer says "one per
@@ -56,7 +58,8 @@ the notes of the version's GitHub Release.
   Releases, Dependabot.
 - `SECURITY.md`, `CLAUDE.md` and this changelog.
 
-[Unreleased]: https://github.com/prohand/gladys-ffhandball/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/prohand/gladys-ffhandball/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/prohand/gladys-ffhandball/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/prohand/gladys-ffhandball/compare/v1.0.2...v1.1.0
 [1.0.2]: https://github.com/prohand/gladys-ffhandball/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/prohand/gladys-ffhandball/releases/tag/v1.0.1
