@@ -22,7 +22,7 @@ Requiere **Gladys 5.3.0 o posterior**.
    ```
 
 3. En Gladys, abra la pantalla **Configuración** de la integración y péguela en **Equipos**.
-   Una dirección por línea para seguir varios equipos. Guarde.
+   Separe las direcciones con comas para seguir varios equipos. Guarde.
 4. Abra la pestaña **Descubrimiento** y cree los dispositivos.
 
 **¿No encuentra la página del equipo?** Copie en su lugar la dirección de la competición (o de
@@ -37,7 +37,7 @@ temporada pasada se queda en el antiguo, que puede borrar).
 
 | Campo                                        | Función                                                                                                                                   |
 | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| **Equipos**                                  | Direcciones de las páginas de equipo, una por línea.                                                                                      |
+| **Equipos**                                  | Direcciones de las páginas de equipo, separadas por comas (o espacios).                                                                   |
 | **Intervalo de actualización**               | Minutos entre dos lecturas de ffhandball.fr (30 por defecto, 5 como mínimo). El sitio actualiza sus páginas más o menos una vez por hora. |
 | **Aviso de partido**                         | Minutos antes del inicio en los que se activa «Un partido va a empezar» (60 por defecto, 0 = al inicio).                                  |
 | **Idioma de los textos de los dispositivos** | Idioma de los nombres de las funciones y de los textos publicados como estados y variables de escena.                                     |

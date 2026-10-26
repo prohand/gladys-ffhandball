@@ -20,8 +20,8 @@ Requires **Gladys 5.3.0 or later**.
    https://www.ffhandball.fr/competitions/saison-2026-2027-22/national/daikin-starligue-2026-27-32372/equipe-2119699/
    ```
 
-3. In Gladys, open the integration's **Configuration** screen and paste it in **Teams**. One
-   address per line to follow several teams. Save.
+3. In Gladys, open the integration's **Configuration** screen and paste it in **Teams**. Separate
+   the addresses with commas to follow several teams. Save.
 4. Open the **Discovery** tab and create the devices.
 
 **Can't find the team page?** Copy the address of the competition (or of one of its pools)
@@ -36,7 +36,7 @@ the old one, which you can delete).
 
 | Field                            | What it does                                                                                                            |
 | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| **Teams**                        | Addresses of team pages, one per line.                                                                                  |
+| **Teams**                        | Addresses of team pages, separated by commas (or spaces).                                                               |
 | **Refresh interval**             | Minutes between two reads of ffhandball.fr (30 by default, 5 minimum). The site refreshes its pages about once an hour. |
 | **Match reminder**               | Minutes before kick-off at which "A match is about to start" fires (60 by default, 0 = at kick-off).                    |
 | **Language of the device texts** | Language of the feature names and of the texts published as states and scene variables.                                 |

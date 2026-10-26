@@ -41,7 +41,7 @@ test('a page that is not a team page is not a team', () => {
   assert.equal(parseTeamUrl(undefined), null);
 });
 
-test('the teams field takes one address per line, reports the others, keeps each team once', () => {
+test('the teams field takes addresses separated by commas, reports the others, keeps each team once', () => {
   const other =
     'https://www.ffhandball.fr/competitions/saison-2026-2027-22/regional/nationale-3-feminine-aura-30494/equipe-2117121/';
   const { teams, invalid } = parseTeams(`${PSG}\n\n  ${other} , ${PSG}\nhello`);
@@ -51,6 +51,24 @@ test('the teams field takes one address per line, reports the others, keeps each
   );
   assert.deepEqual(invalid, ['hello']);
   assert.deepEqual(parseTeams(''), { teams: [], invalid: [] });
+});
+
+test('two addresses on the single line of the form field, with or without spaces', () => {
+  const other = PSG.replace('equipe-2119699', 'equipe-2119702');
+  for (const text of [
+    `${PSG},${other}`,
+    `${PSG}, ${other}`,
+    `${PSG} ${other}`,
+    `${PSG};${other}`,
+  ]) {
+    const { teams, invalid } = parseTeams(text);
+    assert.deepEqual(
+      teams.map((team) => team.teamId),
+      ['2119699', '2119702'],
+      text,
+    );
+    assert.deepEqual(invalid, []);
+  }
 });
 
 test('a competition page, a pool page or a team page is a competition', () => {
